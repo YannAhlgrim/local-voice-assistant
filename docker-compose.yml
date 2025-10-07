@@ -1,0 +1,42 @@
+version: '3.8'
+services:
+  whisper:
+    build: ./whisper
+    image: lva_whisper:latest
+    ports:
+      - "8001:8001"
+    restart: unless-stopped
+    volumes:
+      - ./whisper/models:/models
+
+  coquitts:
+    build: ./coquitts
+    image: lva_coquitts:latest
+    ports:
+      - "8002:8002"
+    restart: unless-stopped
+
+  ollama:
+    # This is a placeholder image; ensure you have an Ollama-compatible image and models available.
+    image: ollama/ollama:latest
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    restart: unless-stopped
+    volumes:
+      - ./ollama-data:/root/.ollama
+
+  middleware:
+    build: ./middleware
+    image: lva_middleware:latest
+    ports:
+      - "8000:8000"
+    depends_on:
+      - whisper
+      - coquitts
+      - ollama
+    restart: unless-stopped
+
+networks:
+  default:
+    name: lva_network
