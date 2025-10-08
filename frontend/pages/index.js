@@ -31,23 +31,35 @@ export default function Home() {
   }
 
   async function sendAudio(blob) {
-    const form = new FormData()
-    // Convert webm to wav on the client is complex; many servers accept webm/ogg.
-    form.append('file', blob, 'recording.webm')
+    try {
+      const form = new FormData()
+      // Convert webm to wav on the client is complex; many servers accept webm/ogg.
+      form.append('file', blob, 'recording.webm')
 
-    const res = await fetch('http://localhost:8000/chat', { method: 'POST', body: form })
-    if (!res.ok) {
-      const text = await res.text()
-      alert('Error: ' + res.status + ' ' + text)
-      return
-    }
-    const audioBlob = await res.blob()
-    const url = URL.createObjectURL(audioBlob)
-    if (audioRef.current) {
-      audioRef.current.src = url
-      audioRef.current.play()
-      setPlaying(true)
-      audioRef.current.onended = () => setPlaying(false)
+      console.log('Sending request to backend...')
+      const res = await fetch('http://localhost:8000/chat', { method: 'POST', body: form })
+      console.log('Response received:', res.status, res.statusText)
+
+      if (!res.ok) {
+        const text = await res.text()
+        alert('Error: ' + res.status + ' ' + text)
+        return
+      }
+
+      console.log('Converting response to blob...')
+      const audioBlob = await res.blob()
+      console.log('Audio blob created, size:', audioBlob.size)
+
+      const url = URL.createObjectURL(audioBlob)
+      if (audioRef.current) {
+        audioRef.current.src = url
+        audioRef.current.play()
+        setPlaying(true)
+        audioRef.current.onended = () => setPlaying(false)
+      }
+    } catch (error) {
+      console.error('Error in sendAudio:', error)
+      alert('Failed to process audio: ' + error.message)
     }
   }
 

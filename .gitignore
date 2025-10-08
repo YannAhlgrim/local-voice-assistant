@@ -64,3 +64,6 @@ Thumbs.db
 .pytest_cache/
 .coverage
 coverage.xml
+
+# Ollama specific
+ollama-data/
