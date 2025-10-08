@@ -30,7 +30,7 @@ services:
     build: ./middleware
     image: lva_middleware:latest
     ports:
-      - "8000:8000"
+      - "8003:8003"
     depends_on:
       - whisper
       - coquitts
