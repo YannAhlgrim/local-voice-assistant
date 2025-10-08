@@ -16,15 +16,15 @@ services:
       - "8002:8002"
     restart: unless-stopped
 
-  ollama:
-    # This is a placeholder image; ensure you have an Ollama-compatible image and models available.
-    image: ollama/ollama:latest
-    container_name: ollama
-    ports:
-      - "11434:11434"
-    restart: unless-stopped
-    volumes:
-      - ./ollama-data:/root/.ollama
+  # ollama:
+  #   # This is a placeholder image; ensure you have an Ollama-compatible image and models available.
+  #   image: ollama/ollama:latest
+  #   container_name: ollama
+  #   ports:
+  #     - "11434:11434"
+  #   restart: unless-stopped
+  #   volumes:
+  #     - ./ollama-data:/root/.ollama
 
   middleware:
     build: ./middleware

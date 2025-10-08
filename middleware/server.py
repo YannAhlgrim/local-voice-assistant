@@ -26,7 +26,7 @@ logger = logging.getLogger("middleware")
 
 WHISPER_URL = "http://whisper:8001/transcribe"
 COQUITTS_URL = "http://coquitts:8002/speak"
-OLLAMA_URL = "http://ollama:11434/api/generate"
+OLLAMA_URL = "http://ollama.ahlgrim.net:11434/api/generate"
 LLM_MODEL = os.getenv("LLM_MODEL", "gemma3:270m")
 logger.info("Using LLM model: %s", LLM_MODEL)
 
