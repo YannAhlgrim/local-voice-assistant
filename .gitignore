@@ -1,0 +1,66 @@
+# Node / Next
+node_modules/
+.next/
+npm-debug.log*
+yarn-error.log
+
+# Local env files
+.env
+.env.*
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+dist/
+build/
+.eggs/
+venv/
+.venv/
+ENV/
+env/
+pip-log.txt
+pip-delete-this-directory.txt
+.python-version
+
+# Virtual environment folders
+.venv/
+venv/
+
+# Model and cache folders (do not check large model files into git)
+whisper/models/
+coquitts/.cache/
+ollama-data/
+models/
+*.pt
+*.pth
+
+# Audio and recording artifacts
+*.wav
+*.mp3
+*.webm
+*.ogg
+recording.*
+response.*
+
+# Docker artifacts
+docker-compose.override.yml
+docker-compose.*.yml
+*.log
+/tmp/
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test / coverage
+.pytest_cache/
+.coverage
+coverage.xml
