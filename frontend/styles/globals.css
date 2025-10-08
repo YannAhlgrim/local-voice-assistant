@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900;
+    @apply min-h-screen;
+  }
+}
+
+@layer components {
+  .record-button {
+    @apply relative overflow-hidden;
+    @apply transition-all duration-300 ease-in-out;
+    @apply transform hover:scale-105 active:scale-95;
+    @apply shadow-2xl;
+  }
+
+  .record-button::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent;
+    @apply opacity-0 translate-x-[-100%];
+    @apply transition-all duration-700;
+  }
+
+  .record-button:hover::before {
+    @apply opacity-20 translate-x-[100%];
+  }
+
+  .audio-visualizer {
+    @apply relative overflow-hidden rounded-xl;
+  }
+
+  .audio-visualizer::after {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20;
+    @apply animate-pulse;
+  }
+}
