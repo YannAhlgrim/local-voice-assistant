@@ -16,6 +16,15 @@ services:
       - "8002:8002"
     restart: unless-stopped
 
+  frontend:
+    build: ./frontend
+    image: lva_frontend:latest
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    environment:
+      - NEXT_PUBLIC_BACKEND_URL=http://localhost:8003
+
   # ollama:
   #   # This is a placeholder image; ensure you have an Ollama-compatible image and models available.
   #   image: ollama/ollama:latest
