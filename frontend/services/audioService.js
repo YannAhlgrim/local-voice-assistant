@@ -31,10 +31,9 @@ export async function startRecording(mediaRecorderRef, audioChunksRef, setRecord
   }
 }
 
-export function stopRecording(mediaRecorderRef, setRecording) {
+export function stopRecording(mediaRecorderRef) {
   if (mediaRecorderRef.current && mediaRecorderRef.current.state !== 'inactive') {
     mediaRecorderRef.current.stop()
-    setRecording(false)
     return true
   }
   return false
@@ -59,10 +58,10 @@ export async function sendAudioToBackend(audioBlob) {
     }
 
     console.log('Converting response to blob...')
-    const audioBlob = await res.blob()
-    console.log('Audio blob created, size:', audioBlob.size)
+    const responseBlob = await res.blob()
+    console.log('Audio blob created, size:', responseBlob.size)
 
-    return audioBlob
+    return responseBlob
   } catch (error) {
     console.error('Error in sendAudioToBackend:', error)
     throw error

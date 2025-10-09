@@ -14,7 +14,9 @@ export default function Home() {
   }
 
   function handleStopRecording() {
-    stopRecording(mediaRecorderRef, setRecording)
+    // Immediately stop the recording animation
+    setRecording(false)
+    stopRecording(mediaRecorderRef)
   }
 
   async function handleSendAudio(blob) {
@@ -45,10 +47,6 @@ export default function Home() {
           <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-4">
             🎤 Voice Assistant
           </h1>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Experience the future of voice interaction. Press and hold to record your voice,
-            or simply click to toggle recording mode.
-          </p>
         </div>
 
         {/* Main Interface */}
@@ -68,9 +66,9 @@ export default function Home() {
               <button
                 onMouseDown={handleStartRecording}
                 onMouseUp={handleStopRecording}
+                onMouseLeave={handleStopRecording}
                 onTouchStart={handleStartRecording}
                 onTouchEnd={handleStopRecording}
-                onClick={() => (recording ? handleStopRecording() : handleStartRecording())}
                 disabled={isProcessing}
                 className={`record-button w-40 h-40 rounded-full border-none text-white text-lg font-semibold
                   ${recording
